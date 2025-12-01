@@ -1,0 +1,48 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "IDGAF",
+      "thumbnail": "https://via.placeholder.com/300x300.png?text=IDGAF",
+      "desc": "Projet orienté original hip hop, rap, avec sa touche de magie.",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=46LS3ONbiU8",
+        "spotify": "https://open.spotify.com/embed/album/6m7gs1eww31kCNt9qQwwF8"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Zanmi",
+      "thumbnail": "https://via.placeholder.com/300x300.png?text=ZANMI",
+      "desc": "Quand le dance hall rencontre le hip-hop, ça donne 'ZANMI'.",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=BiSz-gSji7o",
+        "spotify": "https://open.spotify.com/embed/track/5NjBMwPGv3jEYTZDnD6U34"
+      }
+    },
+    {
+      "id": 3,
+      "title": "First Shot Type Beat",
+      "thumbnail": "https://via.placeholder.com/300x300.png?text=FIRST+SHOT",
+      "desc": "Quel chef-d'œuvre vas-tu créer sur ce beat ? Moments de magie.",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=qGl9CW5EtvM",
+        "spotify": "https://open.spotify.com/embed/track/05ON3r9U01TrXx1BLdvmrp"
+      }
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

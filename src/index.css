@@ -1,0 +1,41 @@
+/* src/styles/style.css */
+body {
+  background: #fafafa;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* container spacing to avoid cards at the edge */
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* small gutters for cards */
+.row.g-3 {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+.row.g-3 > [class*='col-'] {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.card img {
+  object-fit: cover;
+  width: 60px;
+  height: 60px;
+}
+
+.btn-danger {
+  background: #c4302b !important;
+  border-color: #c4302b !important;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.8s ease forwards;
+}

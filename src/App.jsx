@@ -1,0 +1,268 @@
+import React, { useEffect, useState } from "react";
+// import "./styles/style.css";
+
+// ---- ROUTER ---------------------------------------------------
+const useHashRoute = () => {
+  const [route, setRoute] = useState(
+    () => window.location.hash.replace("#", "") || "/"
+  );
+
+  useEffect(() => {
+    const onHash = () => setRoute(window.location.hash.replace("#", "") || "/");
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  const navigate = (to) => (window.location.hash = to);
+
+  return { route, navigate };
+};
+
+// ---- NAVIGATION ------------------------------------------------
+function Nav({ current }) {
+  const links = [
+    { to: "/", label: "Accueil" },
+    { to: "/projects", label: "Projets" },
+    { to: "/about", label: "À propos" },
+  ];
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+      <div className="container">
+        <a className="navbar-brand" href="#/">Vibes Station</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="mainNav">
+          <ul className="navbar-nav ms-auto">
+            {links.map(l => (
+              <li key={l.to} className="nav-item">
+                <a href={`#${l.to}`} className={`nav-link ${current === l.to ? "active" : ""}`}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+// ---- FEATURED PROJECT COMPONENT --------------------------------
+function FeaturedProject({ projects, navigate }) {
+  if (!projects.length) return null;
+
+  const latestProject = projects[projects.length - 1];
+
+  return (
+    <div className="card border-primary p-3 mb-5 shadow-sm">
+      <h3 className="mb-3">🎵 À la une : {latestProject.title}</h3>
+      <p>{latestProject.desc}</p>
+
+      <img
+        src={latestProject.thumbnail}
+        alt={latestProject.title}
+        className="img-fluid rounded mb-3"
+      />
+
+      <h5>Écoute directement :</h5>
+      <iframe
+        src={latestProject.music.spotify}
+        width="100%"
+        height="152"
+        style={{ borderRadius: 12 }}
+        allow="autoplay; encrypted-media"
+      />
+      <div className="ratio ratio-16x9 mt-3">
+        <iframe
+          src={latestProject.music.youtube.replace("watch?v=", "embed/")}
+          title={latestProject.title}
+          allowFullScreen
+        />
+      </div>
+
+      <button className="btn btn-outline-primary mt-3" onClick={() => navigate(`/project/${latestProject.id}`)}>
+        Voir les détails
+      </button>
+    </div>
+  );
+}
+
+// ---- HOME ------------------------------------------------------
+function Home({ navigate, projects }) {
+  return (
+    <header className="bg-light py-5 mb-4">
+      <div className="container text-center card animate-fade-up">
+        <h1 className="display-5 mb-3">Vibes Station Project</h1>
+        <p className="lead mb-4">
+          Tu veux apparaître dans une playlist éditoriale ? Rejoins-moi sur Insta !
+        </p>
+        <button className="btn btn-primary btn-lg mb-2" onClick={() => navigate("/projects")}>
+          Voir les projets
+        </button>
+
+         {/* ----- Spotify Playlist ----- */}
+        <div className="d-flex justify-content-center my-4 card animate-fade-up">
+          <iframe className="my-5"
+            style={{ borderRadius: "12px", width: "100%", height: "152px",}}
+            src="https://open.spotify.com/embed/playlist/4afpjnbHykZO6OZWBcnZlI?utm_source=generator"
+            width="80%"
+            height="352"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        {/* Projets à la une */}
+        <FeaturedProject projects={projects} navigate={navigate} />
+        {/* VIDEO YOUTUBE EN BAS DE PAGE */}
+      <div className="card border-primary p-3 my-5 card animate-fade-up">
+        <h3 className="mb-3">🎬 Découvrez aussi :</h3>
+        <div className="ratio ratio-16x9 card animate-fade-up">
+          <iframe
+            src="https://www.youtube.com/embed/Bc84Z8Wzkho?si=wQJLe2Qt0wUvYNt4"
+            title="YouTube video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </div>
+      </div>
+    </header>
+  );
+}
+
+// ---- PROJECTS LIST --------------------------------------------
+function Projects({ projects, navigate }) {
+  return (
+    <section className="container mb-5">
+      <div className="row g-3">
+        <div className="col-12 mb-3 d-flex justify-content-between align-items-center">
+          <h2>Projets</h2>
+          <small className="text-muted">{projects.length} résultats</small>
+        </div>
+
+        {projects.map(p => (
+          <div key={p.id} className="col-12 col-md-6 col-lg-4">
+            <article className="card h-100 shadow-sm">
+              <img src={p.thumbnail} alt={p.title} className="card-img-top" />
+              <div className="card-body d-flex flex-column">
+                <h5 className="card-title">{p.title}</h5>
+                <p className="card-text flex-grow-1">{p.desc}</p>
+                <button className="btn btn-outline-primary mt-2" onClick={() => navigate(`/project/${p.id}`)}>
+                  Détails
+                </button>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ---- PROJECT DETAILS ------------------------------------------
+function ProjectDetails({ project, navigate }) {
+  if (!project) return null;
+
+  return (
+    <section className="container py-5">
+      <button className="btn btn-outline-secondary mb-4" onClick={() => navigate("/projects")}>
+        ← Retour
+      </button>
+
+      <h2>{project.title}</h2>
+      <p>{project.desc}</p>
+      <img src={project.thumbnail} alt={project.title} className="img-fluid rounded mb-3" />
+
+      <h5>Écoute directement :</h5>
+      <iframe
+        src={project.music.spotify}
+        width="100%"
+        height="152"
+        style={{ borderRadius: 12 }}
+        allow="autoplay; encrypted-media"
+      />
+      <div className="ratio ratio-16x9 mt-3">
+        <iframe
+          src={project.music.youtube.replace("watch?v=", "embed/")}
+          title={project.title}
+          allowFullScreen
+        />
+      </div>
+    </section>
+  );
+}
+
+// ---- ABOUT -----------------------------------------------------
+function About() {
+  return (
+    <section className="container mb-5">
+      <h2>À propos</h2>
+      <p>Retrouves-moi sur mes différents réseaux pour partager la passion.</p>
+
+      <div className="row mt-4">
+        <div className="col-md-6 mb-3">
+          <div className="card p-3 shadow-sm">
+            <h5>Discussion</h5>
+            <p>Retrouves-moi sur Insta !</p>
+            <a href="#" className="btn btn-primary">Instagram</a>
+          </div>
+        </div>
+
+        <div className="col-md-6 mb-3">
+          <div className="card p-3 shadow-sm">
+            <h5>Vibes</h5>
+            <p>Abonne-toi pour soutenir les sorties !</p>
+            <a
+              href="https://www.youtube.com/channel/UCLa4Ej-SdzrSM3ux0ONHzPg?sub_confirmation=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-danger"
+            >
+              S’abonner à la chaîne YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---- FOOTER ----------------------------------------------------
+function Footer() {
+  return (
+    <footer className="bg-light py-4 mt-auto text-center">
+      <small>© {new Date().getFullYear()} Vibes Station</small>
+    </footer>
+  );
+}
+
+// ---- APP ROOT --------------------------------------------------
+export default function App() {
+  const { route, navigate } = useHashRoute();
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    fetch("projects.json")
+      .then(res => res.json())
+      .then(data => setProjects(data.projects))
+      .catch(err => console.error("Erreur chargement projets :", err));
+  }, []);
+
+  const match = route.match(/^\/project\/(\d+)/);
+  const projectId = match ? Number(match[1]) : null;
+  const project = projectId && projects.find(p => p.id === projectId);
+
+  return (
+    <div className="d-flex flex-column min-vh-100">
+      <Nav current={route} />
+      <main className="flex-grow-1">
+        {route === "/" && <Home navigate={navigate} projects={projects} />}
+        {route === "/projects" && <Projects projects={projects} navigate={navigate} />}
+        {project && <ProjectDetails project={project} navigate={navigate} />}
+        {route === "/about" && <About />}
+      </main>
+      <Footer />
+    </div>
+  );
+}
