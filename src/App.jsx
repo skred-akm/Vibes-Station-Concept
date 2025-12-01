@@ -54,7 +54,7 @@ function FeaturedProject({ projects, navigate }) {
   const latestProject = projects[projects.length - 1];
 
   return (
-    <div className="card border-primary p-3 mb-5 shadow-sm">
+    <div className="card border-primary p-3 mb-3 shadow-sm">
       <h3 className="mb-3">🎵 À la une : {latestProject.title}</h3>
       <p>{latestProject.desc}</p>
 
@@ -64,7 +64,7 @@ function FeaturedProject({ projects, navigate }) {
         className="img-fluid rounded mb-3"
       />
 
-      <h5>Écoute directement :</h5>
+      <h5>Bonne écoute</h5>
       <iframe
         src={latestProject.music.spotify}
         width="100%"
@@ -115,8 +115,8 @@ function Home({ navigate, projects }) {
         {/* Projets à la une */}
         <FeaturedProject projects={projects} navigate={navigate} />
         {/* VIDEO YOUTUBE EN BAS DE PAGE */}
-      <div className="card border-primary p-3 my-5 card animate-fade-up">
-        <h3 className="mb-3">🎬 Découvrez aussi :</h3>
+      <div className="card border-primary p-3  card animate-fade-up">
+        <h3 className="mb-3">🎬 Nouvelle découverte</h3>
         <div className="ratio ratio-16x9 card animate-fade-up">
           <iframe
             src="https://www.youtube.com/embed/Bc84Z8Wzkho?si=wQJLe2Qt0wUvYNt4"
@@ -165,7 +165,7 @@ function ProjectDetails({ project, navigate }) {
   if (!project) return null;
 
   return (
-    <section className="container py-5">
+    <section className="container py-5 text-center">
       <button className="btn btn-outline-secondary mb-4" onClick={() => navigate("/projects")}>
         ← Retour
       </button>
@@ -174,7 +174,7 @@ function ProjectDetails({ project, navigate }) {
       <p>{project.desc}</p>
       <img src={project.thumbnail} alt={project.title} className="img-fluid rounded mb-3" />
 
-      <h5>Écoute directement :</h5>
+      <h5>Le son et l'image</h5>
       <iframe
         src={project.music.spotify}
         width="100%"
@@ -183,6 +183,8 @@ function ProjectDetails({ project, navigate }) {
         allow="autoplay; encrypted-media"
       />
       <div className="ratio ratio-16x9 mt-3">
+      
+        
         <iframe
           src={project.music.youtube.replace("watch?v=", "embed/")}
           title={project.title}
