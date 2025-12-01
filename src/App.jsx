@@ -243,7 +243,7 @@ export default function App() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch("projects.json")
+    fetch(`${import.meta.env.BASE_URL}projects.json`) 
       .then(res => res.json())
       .then(data => setProjects(data.projects))
       .catch(err => console.error("Erreur chargement projets :", err));
