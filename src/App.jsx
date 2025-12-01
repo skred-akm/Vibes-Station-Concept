@@ -90,7 +90,7 @@ function FeaturedProject({ projects, navigate }) {
 // ---- HOME ------------------------------------------------------
 function Home({ navigate, projects }) {
   return (
-    <header className="bg-light py-5 mb-4">
+    <header className="bg-light">
       <div className="container text-center card animate-fade-up">
         <h1 className="display-5 mb-3">Vibes Station Project</h1>
         <p className="lead mb-4">
