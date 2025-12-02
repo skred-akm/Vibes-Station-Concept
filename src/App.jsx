@@ -112,7 +112,7 @@ function Home({ navigate, projects }) {
           ></iframe>
         </div>
 
-        {/* Projets à la une */}
+        {/* Nouvelle découverte */}
         <FeaturedProject projects={projects} navigate={navigate} />
         {/* VIDEO YOUTUBE EN BAS DE PAGE */}
       <div className="card border-primary p-3  card animate-fade-up">

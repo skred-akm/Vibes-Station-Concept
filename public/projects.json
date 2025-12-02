@@ -2,18 +2,28 @@
   "projects": [
     {
       "id": 1,
-      "title": "IDGAF",
-      "thumbnail": "https://i9.ytimg.com/s_p/OLAK5uy_mKZ_Om9vFeyssdEg6iNJ8NI6nuNvbasvw/maxresdefault.jpg?sqp=COCJt8kGir7X7AMICNDR078GEAE=&rs=AOn4CLD550iCMLa98h_MUMt02INqgLDd2A&v=1744103632?text=IDGAF",
-      "desc": "Projet orienté original hip hop, rap, avec sa touche de magie.",
+      "title": "First Shot Type Beat",
+      "thumbnail": "https://i.ibb.co/CcYg9TT/First-shot-type-beat.png?text=FIRST+SHOT",
+      "desc": "Quel chef-d'œuvre vas-tu créer sur ce beat ? Moments de magie.",
       "music": {
-        "youtube": "https://www.youtube.com/watch?v=46LS3ONbiU8",
-        "spotify": "https://open.spotify.com/embed/album/6m7gs1eww31kCNt9qQwwF8"
+        "youtube": "https://www.youtube.com/watch?v=qGl9CW5EtvM",
+        "spotify": "https://open.spotify.com/embed/track/05ON3r9U01TrXx1BLdvmrp"
+      }
+    },        
+     {
+      "id": 2,
+      "title": "Ultra Mood",
+      "thumbnail": "https://i.ibb.co/kg46QfMk/ultra-mood.png?text=ULTRA",
+      "desc": "Besoin de beats originaux ? C'est bien par ici!",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=W2somu0Kzss",
+        "spotify": "https://open.spotify.com/embed/album/2kvogsTbrneyzxccSnsirJ?utm_source=generator"
       }
     },
     {
-      "id": 2,
+      "id": 3,
       "title": "Zanmi",
-      "thumbnail": "https://i9.ytimg.com/s_p/OLAK5uy_lvU-kOhPvr88Z7RIfYQ6wbssVbOkhTgVo/maxresdefault.jpg?sqp=COCJt8kGir7X7AMICImu0L0GEAE=&rs=AOn4CLDqMFDnFgj2mOITwTe4T6a1Bwt_sg&v=1739855625?text=ZANMI",
+      "thumbnail": "https://i.ibb.co/v43h4bb6/Zanmi.png?text=ZANMI",
       "desc": "Quand le dance hall rencontre le hip-hop, ça donne 'ZANMI'.",
       "music": {
         "youtube": "https://www.youtube.com/watch?v=BiSz-gSji7o",
@@ -21,13 +31,62 @@
       }
     },
     {
-      "id": 3,
-      "title": "First Shot Type Beat",
-      "thumbnail": "https://i9.ytimg.com/s_p/OLAK5uy_nFCsf7eWDIxDpJNYJIk23Yt1dVaDYcxe0/maxresdefault.jpg?sqp=CIyMt8kGir7X7AMICJe3ur0GEAE=&rs=AOn4CLDuPpv09GtRfQaVwjbi7p2D6VuvPg&v=1739496343?text=FIRST+SHOT",
+      "id": 4,
+      "title": "Anse-Bertand TDL",
+      "thumbnail": "https://i.ibb.co/mVjDPxxL/anse-bertand-tdl.png?text=ANSE+BERTAND+TDL",
+      "desc": "Quand le dance hall rencontre le hip-hop, ça donne 'Anse-Bertrand TDL'.",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=tVZBC1NPq4w",
+        "spotify": "https://open.spotify.com/embed/track/5u9vKiONC77v1tOb1skm2G?utm_source=generator"
+      }
+    },
+    {
+      "id": 5,
+      "title": "It's not ok",
+      "thumbnail": "https://i.ibb.co/yF2GxzNb/it-s-not-ok.png?text=ok",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=1zvd3jmx3Wk",
+        "spotify": "https://open.spotify.com/embed/track/3guzV35sDxYOfjltQL7cLA?utm_source=generator"
+      }
+    },
+    {
+      "id": 6,
+      "title": "Alone",
+      "thumbnail": "https://i.ibb.co/WdM2L5r/alone.png?text=ALONE",
       "desc": "Quel chef-d'œuvre vas-tu créer sur ce beat ? Moments de magie.",
       "music": {
-        "youtube": "https://www.youtube.com/watch?v=qGl9CW5EtvM",
-        "spotify": "https://open.spotify.com/embed/track/05ON3r9U01TrXx1BLdvmrp"
+        "youtube": "https://www.youtube.com/watch?v=qcdhnlE18RQ",
+        "spotify": "https://open.spotify.com/embed/album/0SulaxJHnyNzYT7TBNtyfq?utm_source=generator"
+      }
+    },
+    {
+      "id": 7,
+      "title": "IDGAF",
+      "thumbnail": "https://i.ibb.co/dCCT8pX/idgaf.png?text=idgaf",
+      "desc": "C'est la folie",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=ecKuhVFSFqg",
+        "spotify": "https://open.spotify.com/embed/album/6m7gs1eww31kCNt9qQwwF8"
+      }
+    }, 
+    {
+      "id": 8,
+      "title": "Utopia love",
+      "thumbnail": "https://i.ibb.co/tMjCmpHH/utopia-love.png?text=UTOPIA",
+      "desc": "Laisses la vibe t'emporter",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=H8DJOCuOiIg",
+        "spotify": "https://open.spotify.com/embed/album/4Dq59ZLRSSCq4p9Hm74nWN?utm_source=generator"
+      }
+    },
+    {
+      "id": 9,
+      "title": "Vibes station",
+      "thumbnail": "https://i.ibb.co/zWCCkgrD/vibes-station.png?text=FIRST+SHOT",
+      "desc": "Vibes Station",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=JODw9_Scf-w",
+        "spotify": "https://open.spotify.com/embed/album/0J0tUCtZAisJg2radVZ5Ai?utm_source=generator"
       }
     }
   ]
