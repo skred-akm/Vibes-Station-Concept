@@ -144,8 +144,8 @@ function Projects({ projects, navigate }) {
         {projects.map(p => (
           <div key={p.id} className="col-12 col-md-6 col-lg-4">
             <article className="card h-100 shadow-sm">
-              <img src={p.thumbnail} alt={p.title} className="card-img-top" />
-              <div className="card-body d-flex flex-column">
+              <img src={p.thumbnail} alt={p.title} className="card-img-top m-auto" />
+              <div className="card-body d-flex flex-column text-center">
                 <h5 className="card-title">{p.title}</h5>
                 <p className="card-text flex-grow-1">{p.desc}</p>
                 <button className="btn btn-outline-primary mt-2" onClick={() => navigate(`/project/${p.id}`)}>

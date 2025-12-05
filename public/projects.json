@@ -88,6 +88,16 @@
         "youtube": "https://www.youtube.com/watch?v=JODw9_Scf-w",
         "spotify": "https://open.spotify.com/embed/album/0J0tUCtZAisJg2radVZ5Ai?utm_source=generator"
       }
+    },
+    {
+      "id": 10,
+      "title": "Ultra Mood 2",
+      "thumbnail": "https://i.ibb.co/dCCT8pX/idgaf.png?text=idgaf",
+      "desc": "Ultra Mood 2",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=JODw9_Scf-w",
+        "spotify": "https://open.spotify.com/embed/album/3QC0RGpndsCMzuFYQ5jnhE?utm_source=generator"
+      }
     }
   ]
 }
