@@ -1,28 +1,61 @@
 /* src/styles/style.css */
 body {
- /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+9,7db9e8+25,2989d8+37,207cca+59,7db9e8+76,7db9e8+96 */
-background: radial-gradient(ellipse at center,  rgba(30,87,153,1) 9%,rgba(125,185,232,1) 25%,rgba(41,137,216,1) 37%,rgba(32,124,202,1) 59%,rgba(125,185,232,1) 76%,rgba(125,185,232,1) 96%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+9,7db9e8+25,2989d8+37,207cca+59,7db9e8+76,7db9e8+96 */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(30, 87, 153, 1) 9%,
+    rgba(125, 185, 232, 1) 25%,
+    rgba(41, 137, 216, 1) 37%,
+    rgba(32, 124, 202, 1) 59%,
+    rgba(125, 185, 232, 1) 76%,
+    rgba(125, 185, 232, 1) 96%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
 }
 
 /* container spacing to avoid cards at the edge */
 .container {
   padding-left: 1rem;
   padding-right: 1rem;
-  
-background: linear-gradient(176deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 42%, rgb(236, 220, 81) 100%);
+
+  background: linear-gradient(
+    176deg,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(87, 199, 133, 1) 42%,
+    rgb(236, 220, 81) 100%
+  );
 }
+
+p{font-family: "Skranji", cursive;}
 
 /* small gutters for cards */
 .row.g-3 {
   margin-left: -0.5rem;
   margin-right: -0.5rem;
 }
-.row.g-3 > [class*='col-'] {
+.row.g-3 > [class*="col-"] {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  
 }
+
+.card, .skred, .btn{
+  box-shadow: #000 0px 4px 8px 0px;
+}
+
+.card-title {
+  padding: 1rem;
+  color: rgb(117, 108, 6);
+  background: linear-gradient(
+    176deg,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(87, 199, 133, 1) 42%,
+    rgb(236, 220, 81) 100%
+  );
+}
+
 
 .card img {
   object-fit: cover;
@@ -38,14 +71,25 @@ background: linear-gradient(176deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
 }
 
 .skr {
-  font-family: 'Skranji', cursive;
-  background: #2A7B9B;
-background: radial-gradient(circle,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 0.12) 53%, rgba(237, 221, 83, 1) 100%);
+  font-family: "Skranji", cursive;
+  background: #2a7b9b;
+  background: radial-gradient(
+    circle,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(87, 199, 133, 0.12) 53%,
+    rgba(237, 221, 83, 1) 100%
+  );
 }
 
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-up {

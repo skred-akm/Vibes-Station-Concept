@@ -66,14 +66,14 @@ function FeaturedProject({ projects, navigate }) {
   const latestProject = projects[projects.length - 1];
 
   return (
-    <div className="card border-primary p-3 mb-3 shadow-sm">
+    <div className="card border-primary p-3 mb-3">
       <h3 className="mb-3">🎵 À la une : {latestProject.title}</h3>
       <p>{latestProject.desc}</p>
 
       <img
         src={latestProject.thumbnail}
         alt={latestProject.title}
-        className="img-fluid rounded mb-3"
+        className="img-fluid rounded mb-3 card"
       />
 
       <h5>Bonne écoute</h5>
@@ -84,7 +84,7 @@ function FeaturedProject({ projects, navigate }) {
         style={{ borderRadius: 12 }}
         allow="autoplay; encrypted-media"
       />
-      <div className="ratio ratio-16x9 mt-3">
+      <div className="ratio ratio-16x9 mt-3 card">
         <iframe
           src={latestProject.music.youtube.replace("watch?v=", "embed/")}
           title={latestProject.title}
@@ -93,7 +93,7 @@ function FeaturedProject({ projects, navigate }) {
       </div>
 
       <button
-        className="btn btn-outline-primary mt-3"
+        className="btn btn-outline-primary mt-3 skr"
         onClick={() => navigate(`/project/${latestProject.id}`)}
       >
         Découvrir le projet
@@ -105,9 +105,9 @@ function FeaturedProject({ projects, navigate }) {
 // ---- HOME ------------------------------------------------------
 function Home({ navigate, projects }) {
   return (
-    <header className=" text-white py-5 mb-4">
+    <header className=" text-white py-1">
       <div className="container text-center card animate-fade-up">
-        <h1 className="display-5 mb-3">Vibes Station Project</h1>
+        <h1 className="display-5 my-3 text-warning">Vibes Station Project</h1>
         <p className="lead mb-4">
           Tu veux que tes oeuvres musicales atteignent de nouveaux sommets?
           Rejoins Vibes Station Project, la plateforme ultime pour les
@@ -120,7 +120,7 @@ function Home({ navigate, projects }) {
           fais vibrer le monde avec tes sons uniques!
         </p>
         <button
-          className="btn btn-primary btn-lg mb-2"
+          className="btn btn-primary btn-lg mb-2 skr"
           onClick={() => navigate("/projects")}
         >
           Entres dans la station
@@ -142,8 +142,8 @@ function Home({ navigate, projects }) {
         {/* Nouvelle découverte */}
         <FeaturedProject projects={projects} navigate={navigate} />
         {/* VIDEO YOUTUBE EN BAS DE PAGE */}
-        <div className="card border-primary p-3  card animate-fade-up">
-          <h3 className="mb-3">🎬 Nouvelle découverte</h3>
+        <div className="card border-primary p-3 mb-3 card animate-fade-up">
+          <h3 className="m-3">🎬 Nouvelle découverte</h3>
           <div className="ratio ratio-16x9 card animate-fade-up">
             <iframe
               src="https://www.youtube.com/embed/Bc84Z8Wzkho?si=wQJLe2Qt0wUvYNt4"
@@ -169,8 +169,8 @@ function Projects({ projects, navigate }) {
         </div>
 
         {projects.map((p) => (
-          <div key={p.id} className="col-12 col-md-6 col-lg-6 ">
-            <article className="card h-100 shadow-sm border border-warning">
+          <div key={p.id} className="col-12 col-md-6 col-lg-6">
+            <article className="card h-100 border border-warning">
               <img
                 src={p.thumbnail}
                 alt={p.title}
@@ -218,7 +218,7 @@ function ProjectDetails({ project, navigate }) {
         style={{ borderRadius: 12 }}
         allow="autoplay; encrypted-media"
       />
-      <div className="ratio ratio-16x9 mt-3 rounded-pill">
+      <div className="ratio ratio-16x9 mt-3 card">
         <iframe
           src={project.music.youtube.replace("watch?v=", "embed/")}
           title={project.title}
@@ -228,7 +228,7 @@ function ProjectDetails({ project, navigate }) {
       <img
         src={project.thumbnail}
         alt={project.title}
-        className="img-fluid rounded my-5"
+        className="img-fluid rounded my-5 card"
       />
     </section>
   );
@@ -237,13 +237,13 @@ function ProjectDetails({ project, navigate }) {
 // ---- ABOUT -----------------------------------------------------
 function About() {
   return (
-    <section className="container m-auto mt-5 text-center border border-danger border-3 rounded-3 p-4 shadow-sm">
-      <h2>À propos</h2>
+    <section className="container card m-auto mt-5 text-center border border-danger border-3 rounded-3 p-4 ">
+      <h2 className="text-warning">À propos</h2>
       <p>Retrouves-moi sur mes différents réseaux pour partager la passion.</p>
 
       <div className="row mt-4">
         <div className="col-md-6 mb-3">
-          <div className="card p-3 shadow-sm">
+          <div className="card p-3 ">
             <h5>Discussion</h5>
             <p>
               Tu souhaites discuter musique et vibes, ou rajouter tes oeuvres à
@@ -256,11 +256,11 @@ function About() {
         </div>
 
         <div className="col-md-6 mb-3">
-          <div className="card p-3 shadow-sm">
+          <div className="card p-3 ">
             <h5>Vibes</h5>
             <p>
               Abonne-toi pour soutenir les sorties ! Ca fait toujours plaisir.
-              Grandissons ensemble.
+              Grandissons ensemble. L'aventure ne fait que commencer !
             </p>
             <a
               href="https://www.youtube.com/channel/UCLa4Ej-SdzrSM3ux0ONHzPg?sub_confirmation=1"
@@ -274,7 +274,7 @@ function About() {
         </div>
 
         <div className="col-md-6 mb-3">
-          <div className="card p-3 shadow-sm">
+          <div className="card p-3 ">
             <h5>Vibes</h5>
             <p>Beats gratuits et payants disponibles par ici !</p>
             <a
