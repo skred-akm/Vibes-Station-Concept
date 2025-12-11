@@ -3,6 +3,9 @@
     {
       "id": 1,
       "genre": "Single Beat",
+      "category": [ "hip-hop", "rnb", "lofi", "beat", "instrumental", "type beat","rap"],
+      "artist":[ "Skred Da Skr"],
+      "number_of_tracks": 1,
       "title": "First Shot Type Beat",
       "thumbnail": "https://i.ibb.co/CcYg9TT/First-shot-type-beat.png?text=FIRST+SHOT",
       "desc": "Quel chef-d'œuvre vas-tu créer sur ce beat ? Moments de magie.",
@@ -14,6 +17,9 @@
     {
       "id": 2,
       "genre": "Single Song",
+      "category": ["hip-hop","rap", "song", "oldschool"],
+      "artist":["Hemanifetz", "Skred Da Skr"],
+      "number_of_tracks": 1,
       "title": "It's not ok",
       "thumbnail": "https://i.ibb.co/yF2GxzNb/it-s-not-ok.png?text=ok",
       "desc": "Life is too beautifull.",
@@ -25,6 +31,9 @@
     {
       "id": 3,
       "genre": "Single Song",
+      "category": ["hip-hop", "dancehall", "reggae", "zouk","rap", "song", "oldschool"],
+      "artist":[ "Desta", "Skred Da Skr" ],
+      "number_of_tracks": 1,
       "title": "Zanmi",
       "thumbnail": "https://i.ibb.co/v43h4bb6/Zanmi.png?text=ZANMI",
       "desc": "Quand le dance hall rencontre le hip-hop, ça donne 'ZANMI'. Une vibe irrésistible pour bouger et vibrer ensemble.",
@@ -36,6 +45,9 @@
     {
       "id": 4,
       "genre": "Single Mood",
+      "category": ["hip-hop", "rnb", "lofi", "song"],
+      "artist":["2Scarze", "Skred Da Skr"],
+      "number_of_tracks": 2,
       "title": "Alone",
       "thumbnail": "https://i.ibb.co/WdM2L5r/alone.png?text=ALONE",
       "desc": "Quel chef-d'œuvre vas-tu créer sur ce beat ? Moments de magie. Laisse-toi emporter par la vibe d'Alone.",
@@ -47,6 +59,9 @@
     {
       "id": 5,
       "genre": "EP Beat",
+      "category": ["hip-hop","rap", "beat", "instrumental", "type beat", "oldschool"],
+      "artist":[ "Skred Da Skr" ],
+      "number_of_tracks": 5,
       "title": "IDGAF",
       "thumbnail": "https://i.ibb.co/dCCT8pX/idgaf.png?text=idgaf",
       "desc": "C'est la folie ici! Prends vite ton ticket pour cette aventure musicale incroyable.",
@@ -57,7 +72,10 @@
     },
     {
       "id": 6,
-      "genre": "Single Beat",
+      "genre": "EP Mood",
+      "category": ["hip-hop","zouk", "rnb", "lofi", "beat", "instrumental", "type beat","rap", "song", "dancehall", "reggae"],
+      "artist":[ "Jack MacRath", "AshesAndDreams", "Skred Da Skr", "Yawiaw" ],
+      "number_of_tracks": 5,
       "title": "Ultra Mood 2",
       "thumbnail": "https://i.ibb.co/dCCT8pX/idgaf.png?text=idgaf",
       "desc": "Ultra Mood 2, pour que tu puisses continuer à kiffer les vibes originales.",
@@ -69,6 +87,9 @@
     {
       "id": 7,
       "genre": "EP Beat",
+      "category": ["rnb", "hip-hop","lofi", "beat", "instrumental", "type beat","rap"],
+      "artist":[ "Skred Da Skr"],
+      "number_of_tracks": 3,
       "title": "Vibes station",
       "thumbnail": "https://i.ibb.co/zWCCkgrD/vibes-station.png?text=FIRST+SHOT",
       "desc": "Vibes Station, ton billet pour un voyage musical inoubliable.",
@@ -80,7 +101,10 @@
      {
       "id": 8,
       "genre": "Single Song",
-      "title": "Anse-Bertand TDL",
+      "category": ["hip-hop", "zouk", "rap", "song", "oldschool"],
+      "artist":["Tchiking"],      
+      "number_of_tracks": 1,
+      "title": "Anse-Bertand TDC",
       "thumbnail": "https://i.ibb.co/mVjDPxxL/anse-bertand-tdl.png?text=ANSE+BERTAND+TDL",
       "desc": "Quand un pionnier du zouk se déchaine sur une vibe hip-hop, ça donne 'Anse-Bertrand Terre de légende, Terre de champions'.",
       "music": {
@@ -91,6 +115,9 @@
     {
       "id": 9,
       "genre": "Album Beat",
+      "category": ["rnb", "hip-hop","lofi", "beat", "instrumental", "type beat","rap"],
+      "artist":[ "Skred Da Skr"],
+      "number_of_tracks": 10,
       "title": "Utopia love",
       "thumbnail": "https://i.ibb.co/tMjCmpHH/utopia-love.png?text=UTOPIA",
       "desc": "Entre rêverie et réflexions ? Laisses la vibe t'emporter",
@@ -102,6 +129,9 @@
     {
       "id": 10,
       "genre": "Single Beat",
+      "category": ["hip-hop", "rnb", "lofi", "beat", "instrumental", "type beat","rap", "oldschool"],
+      "artist":[ "Skred Da Skr"],
+      "number_of_tracks": 3,
       "title": "Ultra Mood",
       "thumbnail": "https://i.ibb.co/kg46QfMk/ultra-mood.png?text=ULTRA",
       "desc": "Besoin de beats originaux ? C'est bien par ici! tu seras servi.",
