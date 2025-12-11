@@ -27,8 +27,8 @@ function Nav({ current }) {
   ];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-      <div className="container">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-warning shadow-sm">
+      <div className="container bg-info-subtle rounded-3">
         <a className="navbar-brand" href="#/">Vibes Station</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
           <span className="navbar-toggler-icon" />
@@ -81,7 +81,7 @@ function FeaturedProject({ projects, navigate }) {
       </div>
 
       <button className="btn btn-outline-primary mt-3" onClick={() => navigate(`/project/${latestProject.id}`)}>
-        Voir les détails
+        Découvrir le projet
       </button>
     </div>
   );
@@ -90,14 +90,16 @@ function FeaturedProject({ projects, navigate }) {
 // ---- HOME ------------------------------------------------------
 function Home({ navigate, projects }) {
   return (
-    <header className="bg-light">
+    <header className=" text-white py-5 mb-4">
       <div className="container text-center card animate-fade-up">
         <h1 className="display-5 mb-3">Vibes Station Project</h1>
         <p className="lead mb-4">
-          Tu veux apparaître dans une playlist éditoriale ? Rejoins-moi sur Insta !
+          Tu veux que tes oeuvres musicales atteignent de nouveaux sommets? Rejoins Vibes Station Project, la plateforme ultime pour les beatmakers et producteurs passionnés comme toi. 
+          Découvre des beats exclusifs, partage tes créations, et connecte-toi avec une communauté vibrante qui partage ta passion pour la musique. 
+          Que tu sois un artiste en herbe ou un producteur chevronné, Vibes Station Project est l'endroit idéal pour faire évoluer ton art et laisser ta marque dans l'industrie musicale. Rejoins nous dès aujourd'hui sur instagram et fais vibrer le monde avec tes sons uniques!
         </p>
         <button className="btn btn-primary btn-lg mb-2" onClick={() => navigate("/projects")}>
-          Voir les projets
+          Entres dans la station
         </button>
 
          {/* ----- Spotify Playlist ----- */}
@@ -134,7 +136,7 @@ function Home({ navigate, projects }) {
 // ---- PROJECTS LIST --------------------------------------------
 function Projects({ projects, navigate }) {
   return (
-    <section className="container mb-5">
+    <section className="container mt-5 border border-info border-3 rounded-3 p-4 shadow-sm">
       <div className="row g-3">
         <div className="col-12 mb-3 d-flex justify-content-between align-items-center">
           <h2>Projets</h2>
@@ -142,13 +144,13 @@ function Projects({ projects, navigate }) {
         </div>
 
         {projects.map(p => (
-          <div key={p.id} className="col-12 col-md-6 col-lg-4">
-            <article className="card h-100 shadow-sm">
+          <div key={p.id} className="col-12 col-md-6 col-lg-6 ">
+            <article className="card h-100 shadow-sm border border-warning">
               <img src={p.thumbnail} alt={p.title} className="card-img-top m-auto" />
               <div className="card-body d-flex flex-column text-center">
                 <h5 className="card-title">{p.title}</h5>
                 <p className="card-text flex-grow-1">{p.desc}</p>
-                <button className="btn btn-outline-primary mt-2" onClick={() => navigate(`/project/${p.id}`)}>
+                <button className="btn btn-outline-primary mt-2 border border-warning skr" onClick={() => navigate(`/project/${p.id}`)}>
                   Détails
                 </button>
               </div>
@@ -165,7 +167,7 @@ function ProjectDetails({ project, navigate }) {
   if (!project) return null;
 
   return (
-    <section className="container py-5 text-center">
+    <section className="container py-5 text-center border border-success border-3 rounded-3 p-4 shadow-sm">
       <button className="btn btn-outline-secondary mb-4" onClick={() => navigate("/projects")}>
         ← Retour
       </button>
@@ -198,7 +200,7 @@ function ProjectDetails({ project, navigate }) {
 // ---- ABOUT -----------------------------------------------------
 function About() {
   return (
-    <section className="container mb-5">
+    <section className="container m-auto mt-5 text-center border border-danger border-3 rounded-3 p-4 shadow-sm">
       <h2>À propos</h2>
       <p>Retrouves-moi sur mes différents réseaux pour partager la passion.</p>
 
@@ -206,25 +208,41 @@ function About() {
         <div className="col-md-6 mb-3">
           <div className="card p-3 shadow-sm">
             <h5>Discussion</h5>
-            <p>Retrouves-moi sur Insta !</p>
-            <a href="#" className="btn btn-primary">Instagram</a>
+            <p>Tu souhaites discuter musique et vibes, ou rajouter tes oeuvres à une de mes playlist ? Rejoins-moi sur Instagram !</p>
+            <a  href="#" className="btn btn-primary skr">Instagram</a>
           </div>
         </div>
 
         <div className="col-md-6 mb-3">
           <div className="card p-3 shadow-sm">
             <h5>Vibes</h5>
-            <p>Abonne-toi pour soutenir les sorties !</p>
+            <p>Abonne-toi pour soutenir les sorties ! Ca fait toujours plaisir. Grandissons ensemble.</p>
             <a
               href="https://www.youtube.com/channel/UCLa4Ej-SdzrSM3ux0ONHzPg?sub_confirmation=1"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-danger"
+              className="btn btn-warning skr"
             >
               S’abonner à la chaîne YouTube
             </a>
           </div>
         </div>
+
+        <div className="col-md-6 mb-3">
+          <div className="card p-3 shadow-sm">
+            <h5>Vibes</h5>
+            <p>Beats gratuits et payants disponibles par ici !</p>
+            <a
+              href="https://www.youtube.com/channel/UCLa4Ej-SdzrSM3ux0ONHzPg?sub_confirmation=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-info skr"
+            >
+              BeatStars
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -233,7 +251,7 @@ function About() {
 // ---- FOOTER ----------------------------------------------------
 function Footer() {
   return (
-    <footer className="bg-light py-4 mt-auto text-center">
+    <footer className="bg-li< py-4 mt-auto text-center">
       <small>© {new Date().getFullYear()} Vibes Station</small>
     </footer>
   );
