@@ -11,7 +11,7 @@ background: radial-gradient(ellipse at center,  rgba(30,87,153,1) 9%,rgba(125,18
   padding-left: 1rem;
   padding-right: 1rem;
   
-background: linear-gradient(176deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 42%, rgba(237, 221, 83, 1) 100%);
+background: linear-gradient(176deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 42%, rgb(236, 220, 81) 100%);
 }
 
 /* small gutters for cards */
