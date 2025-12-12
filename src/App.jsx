@@ -1,32 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 // import "./styles/style.css";
 
 // ---- ROUTER ---------------------------------------------------
 const useHashRoute = () => {
+  // Etat pour la route
   const [route, setRoute] = useState(
     () => window.location.hash.replace("#", "") || "/"
   );
 
-  useEffect(() => {
-    const onHash = () => setRoute(window.location.hash.replace("#", "") || "/");
-    window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
+  // Fonction stable pour naviguer
+  const navigate = useCallback((to) => {
+    window.location.hash = to;
   }, []);
 
-  const navigate = (to) => (window.location.hash = to);
+  // Mise à jour du hash lors des changements
+  useEffect(() => {
+    const onHashChange = () => {
+      setRoute(window.location.hash.replace("#", "") || "/");
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
 
-  // --- AJOUT : gestion du paramètre ?project=ID ---
+  // Gestion du paramètre ?project=ID au chargement
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const projectId = params.get("project");
+    if (!projectId) return;
 
-    if (projectId) {
-      navigate(`/projects/${projectId}`);
-    }
-  }, []);
+    // Petit délai pour laisser le temps au reste de l'app de charger
+    const timeout = setTimeout(() => {
+      navigate(`/project/${projectId}`);
+    }, 50);
+
+    return () => clearTimeout(timeout);
+  }, [navigate]);
 
   return { route, navigate };
 };
+
+
+
 
 // ---- NAVIGATION ------------------------------------------------
 function Nav({ current }) {
@@ -400,7 +414,8 @@ export default function App() {
 
   const match = route.match(/^\/project\/(\d+)/);
   const projectId = match ? Number(match[1]) : null;
-  const project = projectId && projects.find((p) => p.id === projectId);
+  const project = projects.find((p) => p.id === projectId) || null;
+
 
   return (
     <div className="d-flex flex-column min-vh-100">
