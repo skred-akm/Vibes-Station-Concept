@@ -28,8 +28,6 @@ const useHashRoute = () => {
   return { route, navigate };
 };
 
-
-
 // ---- NAVIGATION ------------------------------------------------
 function Nav({ current }) {
   const links = [
@@ -208,7 +206,12 @@ function Projects({ projects, navigate }) {
 
 // ---- PROJECT DETAILS ------------------------------------------
 function ProjectDetails({ project, navigate }) {
-  if (!project) return null;
+  if (!project)
+    return (
+      <section className="container py-5 text-center">
+        <p>Chargement du projet...</p>
+      </section>
+    );
 
   return (
     <section className="container py-5 text-center border border-success border-3 rounded-3 p-4 shadow-sm">
@@ -223,51 +226,76 @@ function ProjectDetails({ project, navigate }) {
       <p>{project.desc}</p>
 
       {/* Zone de partage */}
-<div className="mt-4">
-  <h5>Partager ce projet</h5>
+      <div className="mt-4">
+        <h5>Partager ce projet</h5>
 
-  {/* Construction dynamique de l’URL absolue GitHub Pages */}
-  {(() => {
-    const url = `https://skred-akm.github.io/Vibes-Station-Concept/?project=${project.id}`;
+        {/* Construction dynamique de l’URL absolue GitHub Pages */}
+        {(() => {
+          const url = `https://skred-akm.github.io/Vibes-Station-Concept/?project=${project.id}`;
 
-    const encodedUrl = encodeURIComponent(url);
-    const encodedTitle = encodeURIComponent(project.title);
+          const encodedUrl = encodeURIComponent(url);
+          const encodedTitle = encodeURIComponent(project.title);
 
-    const share = {
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-      whatsapp: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
-      telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
-      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-    };
+          const share = {
+            facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+            twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+            whatsapp: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
+            telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
+            linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+          };
 
-    return (
-      <div className="d-flex justify-content-center gap-4 mt-3 fs-4">
-        <a href={share.facebook} target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
-        <a href={share.twitter} target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
-        <a href={share.whatsapp} target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp"></i></a>
-        <a href={share.telegram} target="_blank" rel="noopener noreferrer"><i className="fab fa-telegram"></i></a>
-        <a href={share.linkedin} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+          return (
+            <div className="d-flex justify-content-center gap-4 mt-3 fs-4">
+              <a
+                href={share.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-facebook"></i>
+              </a>
+              <a href={share.twitter} target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a
+                href={share.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-whatsapp"></i>
+              </a>
+              <a
+                href={share.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-telegram"></i>
+              </a>
+              <a
+                href={share.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-linkedin"></i>
+              </a>
+            </div>
+          );
+        })()}
+
+        {/* Bouton copier lien */}
+        <button
+          className="btn btn-outline-primary btn-sm mt-3"
+          onClick={() => {
+            const copyUrl = `https://skred-akm.github.io/Vibes-Station-Concept/projects/${project.id}`;
+            navigator.clipboard.writeText(copyUrl);
+            alert("Lien copié !");
+          }}
+        >
+          Copier le lien
+        </button>
       </div>
-    );
-  })()}
 
-  {/* Bouton copier lien */}
-  <button
-    className="btn btn-outline-primary btn-sm mt-3"
-    onClick={() => {
-      const copyUrl = `https://skred-akm.github.io/Vibes-Station-Concept/projects/${project.id}`;
-      navigator.clipboard.writeText(copyUrl);
-      alert("Lien copié !");
-    }}
-  >
-    Copier le lien
-  </button>
-</div>
+      <h5 className="mt-5">Vibes Station Concept</h5>
 
-<h5 className="mt-5">Vibes Station Concept</h5>
-
-      
       <iframe
         src={project.music.spotify}
         width="100%"
@@ -382,7 +410,10 @@ export default function App() {
         {route === "/projects" && (
           <Projects projects={projects} navigate={navigate} />
         )}
-        {project && <ProjectDetails project={project} navigate={navigate} />}
+        {route.startsWith("/project/") && (
+          <ProjectDetails project={project} navigate={navigate} />
+        )}
+
         {route === "/about" && <About />}
       </main>
       <Footer />
