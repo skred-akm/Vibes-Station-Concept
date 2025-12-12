@@ -3,32 +3,26 @@ import React, { useEffect, useState, useCallback } from "react";
 
 // ---- ROUTER ---------------------------------------------------
 const useHashRoute = () => {
-  // Etat pour la route
   const [route, setRoute] = useState(
     () => window.location.hash.replace("#", "") || "/"
   );
 
-  // Fonction stable pour naviguer
   const navigate = useCallback((to) => {
     window.location.hash = to;
   }, []);
 
-  // Mise à jour du hash lors des changements
   useEffect(() => {
-    const onHashChange = () => {
-      setRoute(window.location.hash.replace("#", "") || "/");
-    };
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    const onHash = () => setRoute(window.location.hash.replace("#", "") || "/");
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
-  // Gestion du paramètre ?project=ID au chargement
+  // gestion du paramètre ?project=ID au chargement
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const projectId = params.get("project");
     if (!projectId) return;
 
-    // Petit délai pour laisser le temps au reste de l'app de charger
     const timeout = setTimeout(() => {
       navigate(`/project/${projectId}`);
     }, 50);
@@ -39,11 +33,47 @@ const useHashRoute = () => {
   return { route, navigate };
 };
 
+// ---- HOOK FAVORITES (localStorage) ----------------------------
+const useFavorites = () => {
+  const KEY = "vibes_favorites_v1";
 
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const raw = localStorage.getItem(KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      console.error("Erreur lecture localStorage favoris:", e);
+      return [];
+    }
+  });
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(favorites));
+    } catch (e) {
+      console.error("Erreur écriture localStorage favoris:", e);
+    }
+  }, [favorites]);
+
+  const isFavorite = useCallback(
+    (id) => favorites.includes(Number(id)),
+    [favorites]
+  );
+
+  const toggleFavorite = useCallback((id) => {
+    const numId = Number(id);
+    setFavorites((prev) =>
+      prev.includes(numId) ? prev.filter((x) => x !== numId) : [...prev, numId]
+    );
+  }, []);
+
+  const clearFavorites = useCallback(() => setFavorites([]), []);
+
+  return { favorites, isFavorite, toggleFavorite, clearFavorites };
+};
 
 // ---- NAVIGATION ------------------------------------------------
-function Nav({ current }) {
+function Nav({ current, favoritesCount }) {
   const links = [
     { to: "/", label: "Accueil" },
     { to: "/projects", label: "Projets" },
@@ -76,6 +106,14 @@ function Nav({ current }) {
                 </a>
               </li>
             ))}
+            <li className="nav-item">
+              <a
+                href={"#/favorites"}
+                className={`nav-link ${current === "/favorites" ? "active" : ""}`}
+              >
+                Mes favoris{favoritesCount > 0 ? ` (${favoritesCount})` : ""}
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -84,7 +122,7 @@ function Nav({ current }) {
 }
 
 // ---- FEATURED PROJECT COMPONENT --------------------------------
-function FeaturedProject({ projects, navigate }) {
+function FeaturedProject({ projects, navigate, isFavorite, toggleFavorite }) {
   if (!projects.length) return null;
 
   const latestProject = projects[projects.length - 1];
@@ -116,18 +154,27 @@ function FeaturedProject({ projects, navigate }) {
         />
       </div>
 
-      <button
-        className="btn btn-outline-primary mt-3 skr"
-        onClick={() => navigate(`/project/${latestProject.id}`)}
-      >
-        Découvrir le projet
-      </button>
+      <div className="d-flex gap-2 mt-3">
+        <button
+          className="btn btn-outline-primary skr"
+          onClick={() => navigate(`/project/${latestProject.id}`)}
+        >
+          Découvrir le projet
+        </button>
+
+        <button
+          className="btn btn-outline-warning skr"
+          onClick={() => toggleFavorite(latestProject.id)}
+        >
+          {isFavorite(latestProject.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+        </button>
+      </div>
     </div>
   );
 }
 
 // ---- HOME ------------------------------------------------------
-function Home({ navigate, projects }) {
+function Home({ navigate, projects, isFavorite, toggleFavorite }) {
   return (
     <header className=" text-white py-1">
       <div className="container text-center card animate-fade-up">
@@ -164,7 +211,13 @@ function Home({ navigate, projects }) {
         </div>
 
         {/* Nouvelle découverte */}
-        <FeaturedProject projects={projects} navigate={navigate} />
+        <FeaturedProject
+          projects={projects}
+          navigate={navigate}
+          isFavorite={isFavorite}
+          toggleFavorite={toggleFavorite}
+        />
+
         {/* VIDEO YOUTUBE EN BAS DE PAGE */}
         <div className="card border-primary p-3 mb-3 card animate-fade-up">
           <h3 className="m-3">🎬 Nouvelle découverte</h3>
@@ -183,13 +236,23 @@ function Home({ navigate, projects }) {
 }
 
 // ---- PROJECTS LIST --------------------------------------------
-function Projects({ projects, navigate }) {
+function Projects({ projects, navigate, favorites, isFavorite, toggleFavorite }) {
   return (
     <section className="container mt-5 border border-info border-3 rounded-3 p-4 shadow-sm">
       <div className="row g-3">
         <div className="col-12 mb-3 d-flex justify-content-between align-items-center">
           <h2>Projets</h2>
           <small className="text-muted">{projects.length} résultats</small>
+        </div>
+
+        {/* Lien Mes favoris au dessus de la liste */}
+        <div className="col-12 mb-3 d-flex justify-content-end">
+          <button
+            className="btn btn-outline-warning"
+            onClick={() => navigate("/favorites")}
+          >
+            Mes favoris{favorites.length > 0 ? ` (${favorites.length})` : ""}
+          </button>
         </div>
 
         {projects.map((p) => (
@@ -203,12 +266,22 @@ function Projects({ projects, navigate }) {
               <div className="card-body d-flex flex-column text-center">
                 <h5 className="card-title">{p.title}</h5>
                 <p className="card-text flex-grow-1">{p.desc}</p>
-                <button
-                  className="btn btn-outline-primary mt-2 border border-warning skr"
-                  onClick={() => navigate(`/project/${p.id}`)}
-                >
-                  Détails
-                </button>
+
+                <div className="d-flex gap-2 justify-content-center">
+                  <button
+                    className="btn btn-outline-primary mt-2 border border-warning skr"
+                    onClick={() => navigate(`/project/${p.id}`)}
+                  >
+                    Détails
+                  </button>
+
+                  <button
+                    className="btn btn-outline-warning mt-2 skr"
+                    onClick={() => toggleFavorite(p.id)}
+                  >
+                    {isFavorite(p.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+                  </button>
+                </div>
               </div>
             </article>
           </div>
@@ -218,8 +291,63 @@ function Projects({ projects, navigate }) {
   );
 }
 
+// ---- FAVORITES PAGE ------------------------------------------
+function FavoritesPage({ projects, favorites, navigate, isFavorite, toggleFavorite }) {
+  const favProjects = projects.filter((p) => favorites.includes(p.id));
+
+  return (
+    <section className="container mt-5 border border-warning border-3 rounded-3 p-4 shadow-sm">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h2>Mes favoris</h2>
+        <button className="btn btn-outline-secondary" onClick={() => navigate("/projects")}>
+          ← Retour aux projets
+        </button>
+      </div>
+
+      {favProjects.length === 0 ? (
+        <div className="text-center py-5">
+          <p>Aucun favori pour le moment.</p>
+          <button className="btn btn-primary" onClick={() => navigate("/projects")}>
+            Parcourir les projets
+          </button>
+        </div>
+      ) : (
+        <div className="row g-3">
+          {favProjects.map((p) => (
+            <div key={p.id} className="col-12 col-md-6 col-lg-6">
+              <article className="card h-100 border border-warning">
+                <img src={p.thumbnail} alt={p.title} className="card-img-top m-auto" />
+                <div className="card-body d-flex flex-column text-center">
+                  <h5 className="card-title">{p.title}</h5>
+                  <p className="card-text flex-grow-1">{p.desc}</p>
+
+                  <div className="d-flex gap-2 justify-content-center">
+                    <button
+                      className="btn btn-outline-primary mt-2 border border-warning skr"
+                      onClick={() => navigate(`/project/${p.id}`)}
+                    >
+                      Détails
+                    </button>
+
+                    <button
+                      className="btn btn-outline-warning mt-2 skr"
+                      onClick={() => toggleFavorite(p.id)}
+                    >
+                      Retirer des favoris
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
 // ---- PROJECT DETAILS ------------------------------------------
-function ProjectDetails({ project, navigate }) {
+function ProjectDetails({ project, navigate, isFavorite, toggleFavorite }) {
   if (!project)
     return (
       <section className="container py-5 text-center">
@@ -239,14 +367,11 @@ function ProjectDetails({ project, navigate }) {
       <h2>{project.title}</h2>
       <p>{project.desc}</p>
 
-      {/* Zone de partage */}
       <div className="mt-4">
         <h5>Partager ce projet</h5>
 
-        {/* Construction dynamique de l’URL absolue GitHub Pages */}
         {(() => {
           const url = `https://skred-akm.github.io/Vibes-Station-Concept/?project=${project.id}`;
-
           const encodedUrl = encodeURIComponent(url);
           const encodedTitle = encodeURIComponent(project.title);
 
@@ -260,52 +385,44 @@ function ProjectDetails({ project, navigate }) {
 
           return (
             <div className="d-flex justify-content-center gap-4 mt-3 fs-4">
-              <a
-                href={share.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={share.facebook} target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-facebook"></i>
               </a>
               <a href={share.twitter} target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a
-                href={share.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={share.whatsapp} target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-whatsapp"></i>
               </a>
-              <a
-                href={share.telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={share.telegram} target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-telegram"></i>
               </a>
-              <a
-                href={share.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={share.linkedin} target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-linkedin"></i>
               </a>
             </div>
           );
         })()}
 
-        {/* Bouton copier lien */}
-        <button
-          className="btn btn-outline-primary btn-sm mt-3"
-          onClick={() => {
-            const copyUrl = `https://skred-akm.github.io/Vibes-Station-Concept/projects/${project.id}`;
-            navigator.clipboard.writeText(copyUrl);
-            alert("Lien copié !");
-          }}
-        >
-          Copier le lien
-        </button>
+        <div className="mt-3 d-flex justify-content-center gap-2">
+          <button
+            className="btn btn-outline-primary btn-sm"
+            onClick={() => {
+              const copyUrl = `https://skred-akm.github.io/Vibes-Station-Concept/projects/${project.id}`;
+              navigator.clipboard.writeText(copyUrl);
+              alert("Lien copié !");
+            }}
+          >
+            Copier le lien
+          </button>
+
+          <button
+            className="btn btn-outline-warning btn-sm"
+            onClick={() => toggleFavorite(project.id)}
+          >
+            {isFavorite(project.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+          </button>
+        </div>
       </div>
 
       <h5 className="mt-5">Vibes Station Concept</h5>
@@ -403,6 +520,7 @@ function Footer() {
 // ---- APP ROOT --------------------------------------------------
 export default function App() {
   const { route, navigate } = useHashRoute();
+  const { favorites, isFavorite, toggleFavorite } = useFavorites();
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -416,17 +534,48 @@ export default function App() {
   const projectId = match ? Number(match[1]) : null;
   const project = projects.find((p) => p.id === projectId) || null;
 
+  const favoritesCount = favorites.length;
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Nav current={route} />
+      <Nav current={route} favoritesCount={favoritesCount} />
       <main className="flex-grow-1">
-        {route === "/" && <Home navigate={navigate} projects={projects} />}
-        {route === "/projects" && (
-          <Projects projects={projects} navigate={navigate} />
+        {route === "/" && (
+          <Home
+            navigate={navigate}
+            projects={projects}
+            isFavorite={isFavorite}
+            toggleFavorite={toggleFavorite}
+          />
         )}
+
+        {route === "/projects" && (
+          <Projects
+            projects={projects}
+            navigate={navigate}
+            favorites={favorites}
+            isFavorite={isFavorite}
+            toggleFavorite={toggleFavorite}
+          />
+        )}
+
+        {route === "/favorites" && (
+          <FavoritesPage
+            projects={projects}
+            favorites={favorites}
+            navigate={navigate}
+            isFavorite={isFavorite}
+            toggleFavorite={toggleFavorite}
+          />
+        )}
+
         {route.startsWith("/project/") && (
-          <ProjectDetails project={project} navigate={navigate} />
+          <ProjectDetails
+            project={project}
+            navigate={navigate}
+            isFavorite={isFavorite}
+            toggleFavorite={toggleFavorite}
+          />
         )}
 
         {route === "/about" && <About />}
