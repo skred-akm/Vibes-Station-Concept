@@ -210,7 +210,51 @@ function ProjectDetails({ project, navigate }) {
       <h2>{project.title}</h2>
       <p>{project.desc}</p>
 
-      <h5>Vibes Station Concept</h5>
+      {/* Zone de partage */}
+<div className="mt-4">
+  <h5>Partager ce projet</h5>
+
+  {/* Construction dynamique de l’URL absolue GitHub Pages */}
+  {(() => {
+    const url = `https://skred-akm.github.io/Vibes-Station-Concept/projects/${project.id}`;
+    const encodedUrl = encodeURIComponent(url);
+    const encodedTitle = encodeURIComponent(project.title);
+
+    const share = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      whatsapp: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
+      telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    };
+
+    return (
+      <div className="d-flex justify-content-center gap-4 mt-3 fs-4">
+        <a href={share.facebook} target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
+        <a href={share.twitter} target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
+        <a href={share.whatsapp} target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp"></i></a>
+        <a href={share.telegram} target="_blank" rel="noopener noreferrer"><i className="fab fa-telegram"></i></a>
+        <a href={share.linkedin} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+      </div>
+    );
+  })()}
+
+  {/* Bouton copier lien */}
+  <button
+    className="btn btn-outline-primary btn-sm mt-3"
+    onClick={() => {
+      const copyUrl = `https://skred-akm.github.io/Vibes-Station-Concept/projects/${project.id}`;
+      navigator.clipboard.writeText(copyUrl);
+      alert("Lien copié !");
+    }}
+  >
+    Copier le lien
+  </button>
+</div>
+
+<h5 className="mt-5">Vibes Station Concept</h5>
+
+      
       <iframe
         src={project.music.spotify}
         width="100%"
