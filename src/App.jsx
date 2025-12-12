@@ -15,8 +15,20 @@ const useHashRoute = () => {
 
   const navigate = (to) => (window.location.hash = to);
 
+  // --- AJOUT : gestion du paramètre ?project=ID ---
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get("project");
+
+    if (projectId) {
+      navigate(`/projects/${projectId}`);
+    }
+  }, []);
+
   return { route, navigate };
 };
+
+
 
 // ---- NAVIGATION ------------------------------------------------
 function Nav({ current }) {
@@ -216,7 +228,8 @@ function ProjectDetails({ project, navigate }) {
 
   {/* Construction dynamique de l’URL absolue GitHub Pages */}
   {(() => {
-    const url = `https://skred-akm.github.io/Vibes-Station-Concept/projects/${project.id}`;
+    const url = `https://skred-akm.github.io/Vibes-Station-Concept/?project=${project.id}`;
+
     const encodedUrl = encodeURIComponent(url);
     const encodedTitle = encodeURIComponent(project.title);
 
