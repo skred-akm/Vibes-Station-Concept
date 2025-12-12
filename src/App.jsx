@@ -109,7 +109,9 @@ function Nav({ current, favoritesCount }) {
             <li className="nav-item">
               <a
                 href={"#/favorites"}
-                className={`nav-link ${current === "/favorites" ? "active" : ""}`}
+                className={`nav-link ${
+                  current === "/favorites" ? "active" : ""
+                }`}
               >
                 Mes favoris{favoritesCount > 0 ? ` (${favoritesCount})` : ""}
               </a>
@@ -166,7 +168,9 @@ function FeaturedProject({ projects, navigate, isFavorite, toggleFavorite }) {
           className="btn btn-outline-warning skr"
           onClick={() => toggleFavorite(latestProject.id)}
         >
-          {isFavorite(latestProject.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+          {isFavorite(latestProject.id)
+            ? "Retirer des favoris"
+            : "Ajouter aux favoris"}
         </button>
       </div>
     </div>
@@ -180,15 +184,24 @@ function Home({ navigate, projects, isFavorite, toggleFavorite }) {
       <div className="container text-center card animate-fade-up">
         <h1 className="display-5 my-3 text-warning">Vibes Station Project</h1>
         <p className="lead mb-4">
-          Tu veux que tes oeuvres musicales atteignent de nouveaux sommets?
-          Rejoins Vibes Station Project, la plateforme ultime pour les
-          beatmakers et producteurs passionnés comme toi. Découvre des beats
-          exclusifs, partage tes créations, et connecte-toi avec une communauté
-          vibrante qui partage ta passion pour la musique. Que tu sois un
-          artiste en herbe ou un producteur chevronné, Vibes Station Project est
-          l'endroit idéal pour faire évoluer ton art et laisser ta marque dans
-          l'industrie musicale. Rejoins nous dès aujourd'hui sur instagram et
-          fais vibrer le monde avec tes sons uniques!
+          Tu rêves d’un lieu où la musique devient langage universel ?
+        </p>
+        <p className="lead mb-4">
+          Entre dans Vibes Station Concept, l’espace où chaque passionné trouve
+          sa résonance.
+        </p>
+        <p className="lead mb-4">
+          Découvre des créations inédites, partage ton univers sonore, et
+          connecte-toi à une communauté vibrante qui vit au rythme des mêmes
+          pulsations que toi.
+        </p>
+        <p className="lead mb-4">
+          Ici, ton art s’élève, s’affine et laisse son empreinte dans le grand
+          mouvement musical.
+        </p>
+        <p className="lead mb-4">
+          Rejoins-nous dès aujourd’hui sur Instagram… et fais vibrer le monde
+          avec ta signature unique.
         </p>
         <button
           className="btn btn-primary btn-lg mb-2 skr"
@@ -197,8 +210,16 @@ function Home({ navigate, projects, isFavorite, toggleFavorite }) {
           Entres dans la station
         </button>
 
+        {/* Nouvelle découverte */}
+        <FeaturedProject
+          projects={projects}
+          navigate={navigate}
+          isFavorite={isFavorite}
+          toggleFavorite={toggleFavorite}
+        />
+
         {/* ----- Spotify Playlist ----- */}
-        <div className="d-flex justify-content-center my-4 card animate-fade-up">
+        <div className="d-flex justify-content-center mb-3 card animate-fade-up">
           <iframe
             className="my-5"
             style={{ borderRadius: "12px", width: "100%", height: "152px" }}
@@ -209,14 +230,6 @@ function Home({ navigate, projects, isFavorite, toggleFavorite }) {
             loading="lazy"
           ></iframe>
         </div>
-
-        {/* Nouvelle découverte */}
-        <FeaturedProject
-          projects={projects}
-          navigate={navigate}
-          isFavorite={isFavorite}
-          toggleFavorite={toggleFavorite}
-        />
 
         {/* VIDEO YOUTUBE EN BAS DE PAGE */}
         <div className="card border-primary p-3 mb-3 card animate-fade-up">
@@ -236,7 +249,13 @@ function Home({ navigate, projects, isFavorite, toggleFavorite }) {
 }
 
 // ---- PROJECTS LIST --------------------------------------------
-function Projects({ projects, navigate, favorites, isFavorite, toggleFavorite }) {
+function Projects({
+  projects,
+  navigate,
+  favorites,
+  isFavorite,
+  toggleFavorite,
+}) {
   return (
     <section className="container mt-5 border border-info border-3 rounded-3 p-4 shadow-sm">
       <div className="row g-3">
@@ -279,7 +298,9 @@ function Projects({ projects, navigate, favorites, isFavorite, toggleFavorite })
                     className="btn btn-outline-warning mt-2 skr"
                     onClick={() => toggleFavorite(p.id)}
                   >
-                    {isFavorite(p.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+                    {isFavorite(p.id)
+                      ? "Retirer des favoris"
+                      : "Ajouter aux favoris"}
                   </button>
                 </div>
               </div>
@@ -292,14 +313,23 @@ function Projects({ projects, navigate, favorites, isFavorite, toggleFavorite })
 }
 
 // ---- FAVORITES PAGE ------------------------------------------
-function FavoritesPage({ projects, favorites, navigate, isFavorite, toggleFavorite }) {
+function FavoritesPage({
+  projects,
+  favorites,
+  navigate,
+  isFavorite,
+  toggleFavorite,
+}) {
   const favProjects = projects.filter((p) => favorites.includes(p.id));
 
   return (
     <section className="container mt-5 border border-warning border-3 rounded-3 p-4 shadow-sm">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Mes favoris</h2>
-        <button className="btn btn-outline-secondary" onClick={() => navigate("/projects")}>
+        <button
+          className="btn btn-outline-secondary"
+          onClick={() => navigate("/projects")}
+        >
           ← Retour aux projets
         </button>
       </div>
@@ -307,7 +337,10 @@ function FavoritesPage({ projects, favorites, navigate, isFavorite, toggleFavori
       {favProjects.length === 0 ? (
         <div className="text-center py-5">
           <p>Aucun favori pour le moment.</p>
-          <button className="btn btn-primary" onClick={() => navigate("/projects")}>
+          <button
+            className="btn btn-primary"
+            onClick={() => navigate("/projects")}
+          >
             Parcourir les projets
           </button>
         </div>
@@ -316,7 +349,11 @@ function FavoritesPage({ projects, favorites, navigate, isFavorite, toggleFavori
           {favProjects.map((p) => (
             <div key={p.id} className="col-12 col-md-6 col-lg-6">
               <article className="card h-100 border border-warning">
-                <img src={p.thumbnail} alt={p.title} className="card-img-top m-auto" />
+                <img
+                  src={p.thumbnail}
+                  alt={p.title}
+                  className="card-img-top m-auto"
+                />
                 <div className="card-body d-flex flex-column text-center">
                   <h5 className="card-title">{p.title}</h5>
                   <p className="card-text flex-grow-1">{p.desc}</p>
@@ -385,19 +422,35 @@ function ProjectDetails({ project, navigate, isFavorite, toggleFavorite }) {
 
           return (
             <div className="d-flex justify-content-center gap-4 mt-3 fs-4">
-              <a href={share.facebook} target="_blank" rel="noopener noreferrer">
+              <a
+                href={share.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-facebook"></i>
               </a>
               <a href={share.twitter} target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href={share.whatsapp} target="_blank" rel="noopener noreferrer">
+              <a
+                href={share.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-whatsapp"></i>
               </a>
-              <a href={share.telegram} target="_blank" rel="noopener noreferrer">
+              <a
+                href={share.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-telegram"></i>
               </a>
-              <a href={share.linkedin} target="_blank" rel="noopener noreferrer">
+              <a
+                href={share.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
             </div>
@@ -420,12 +473,16 @@ function ProjectDetails({ project, navigate, isFavorite, toggleFavorite }) {
             className="btn btn-outline-warning btn-sm"
             onClick={() => toggleFavorite(project.id)}
           >
-            {isFavorite(project.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+            {isFavorite(project.id)
+              ? "Retirer des favoris"
+              : "Ajouter aux favoris"}
           </button>
         </div>
       </div>
 
-      <h5 className="mt-5">Vibes Station Concept</h5>
+      <h5 className="mt-5">
+        Vibes Station Concept : là où les sons deviennent légendes.
+      </h5>
 
       <iframe
         src={project.music.spotify}
