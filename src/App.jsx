@@ -140,7 +140,7 @@ function FeaturedProject({ projects, navigate, isFavorite, toggleFavorite }) {
         className="img-fluid rounded mb-3 card"
       />
 
-      <h5>Bonne écoute</h5>
+      <h5 className="m-3"> "Unis par la musique, portés par ta vibe." </h5>
       <iframe
         src={latestProject.music.spotify}
         width="100%"
@@ -165,7 +165,7 @@ function FeaturedProject({ projects, navigate, isFavorite, toggleFavorite }) {
         </button>
 
         <button
-          className="btn btn-outline-warning skr"
+          className="btn btn-outline-warning skr vibe"
           onClick={() => toggleFavorite(latestProject.id)}
         >
           {isFavorite(latestProject.id)
@@ -200,11 +200,11 @@ function Home({ navigate, projects, isFavorite, toggleFavorite }) {
           mouvement musical.
         </p>
         <p className="lead mb-4">
-          Rejoins-nous dès aujourd’hui sur Instagram… et fais vibrer le monde
+          Rejoins-nous dès aujourd’hui sur <a className="text-warning zoom skr py-2 my-2 card " href="">Instagram <i class="fa-brands fa-instagram"></i></a> et fais vibrer le monde
           avec ta signature unique.
         </p>
         <button
-          className="btn btn-primary btn-lg mb-2 skr"
+          className="btn btn-primary btn-lg mb-3 skr zoom"
           onClick={() => navigate("/projects")}
         >
           Entres dans la station
@@ -276,7 +276,7 @@ function Projects({
 
         {projects.map((p) => (
           <div key={p.id} className="col-12 col-md-6 col-lg-6">
-            <article className="card h-100 border border-warning">
+            <article className="card h-100 border border-warning art">
               <img
                 src={p.thumbnail}
                 alt={p.title}
@@ -284,7 +284,7 @@ function Projects({
               />
               <div className="card-body d-flex flex-column text-center">
                 <h5 className="card-title">{p.title}</h5>
-                <p className="card-text flex-grow-1">{p.desc}</p>
+                <p className="card-text zoom flex-grow-1">{p.desc}</p>
 
                 <div className="d-flex gap-2 justify-content-center">
                   <button
@@ -295,7 +295,7 @@ function Projects({
                   </button>
 
                   <button
-                    className="btn btn-outline-warning mt-2 skr"
+                    className="btn btn-outline-warning mt-2 skr vibe"
                     onClick={() => toggleFavorite(p.id)}
                   >
                     {isFavorite(p.id)
@@ -348,7 +348,7 @@ function FavoritesPage({
         <div className="row g-3">
           {favProjects.map((p) => (
             <div key={p.id} className="col-12 col-md-6 col-lg-6">
-              <article className="card h-100 border border-warning">
+              <article className="card h-100 border border-warning art">
                 <img
                   src={p.thumbnail}
                   alt={p.title}
@@ -356,7 +356,7 @@ function FavoritesPage({
                 />
                 <div className="card-body d-flex flex-column text-center">
                   <h5 className="card-title">{p.title}</h5>
-                  <p className="card-text flex-grow-1">{p.desc}</p>
+                  <p className="card-text flex-grow-1 zoom">{p.desc}</p>
 
                   <div className="d-flex gap-2 justify-content-center">
                     <button
@@ -459,7 +459,7 @@ function ProjectDetails({ project, navigate, isFavorite, toggleFavorite }) {
 
         <div className="mt-3 d-flex justify-content-center gap-2">
           <button
-            className="btn btn-outline-primary btn-sm"
+            className="btn btn-outline-primary btn-sm "
             onClick={() => {
               const copyUrl = `https://skred-akm.github.io/Vibes-Station-Concept/projects/${project.id}`;
               navigator.clipboard.writeText(copyUrl);
@@ -470,7 +470,7 @@ function ProjectDetails({ project, navigate, isFavorite, toggleFavorite }) {
           </button>
 
           <button
-            className="btn btn-outline-warning btn-sm"
+            className="btn btn-outline-warning btn-sm vibe"
             onClick={() => toggleFavorite(project.id)}
           >
             {isFavorite(project.id)
@@ -480,7 +480,7 @@ function ProjectDetails({ project, navigate, isFavorite, toggleFavorite }) {
         </div>
       </div>
 
-      <h5 className="mt-5">
+      <h5 className="my-4 p-3 skr rounded card text-danger-emphasis">
         Vibes Station Concept : là où les sons deviennent légendes.
       </h5>
 
@@ -501,7 +501,7 @@ function ProjectDetails({ project, navigate, isFavorite, toggleFavorite }) {
       <img
         src={project.thumbnail}
         alt={project.title}
-        className="img-fluid rounded my-5 card"
+        className="img-fluid rounded my-5 card m-auto"
       />
     </section>
   );
@@ -522,7 +522,9 @@ function About() {
               Tu souhaites discuter musique et vibes, ou rajouter tes oeuvres à
               une de mes playlist ? Rejoins-moi sur Instagram !
             </p>
-            <a href="#" className="btn btn-primary skr">
+            <a href="https://www.youtube.com/channel/UCLa4Ej-SdzrSM3ux0ONHzPg?sub_confirmation=1"
+              target="_blank"
+              rel="noopener noreferrer" className="btn btn-primary skr zoom">
               Instagram
             </a>
           </div>
@@ -539,7 +541,7 @@ function About() {
               href="https://www.youtube.com/channel/UCLa4Ej-SdzrSM3ux0ONHzPg?sub_confirmation=1"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-warning skr text-danger-emphasis"
+              className="btn btn-warning skr text-danger-emphasis zoom"
             >
               S’abonner à la chaîne YouTube
             </a>
@@ -548,18 +550,34 @@ function About() {
 
         <div className="col-md-6 mb-3">
           <div className="card p-3 ">
-            <h5>Vibes</h5>
+            <h5>Artistes</h5>
             <p>Beats gratuits et payants disponibles par ici !</p>
             <a
-              href="https://www.youtube.com/channel/UCLa4Ej-SdzrSM3ux0ONHzPg?sub_confirmation=1"
+              href="https://www.beatstars.com/skredakaskr"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-info skr"
+              className="btn btn-info skr zoom"
             >
               BeatStars
             </a>
           </div>
         </div>
+
+        <div className="col-md-6 mb-3">
+          <div className="card p-3 ">
+            <h5>Streaming</h5>
+            <p>plateformes de distribution musicale</p>
+            <a
+              href="https://music.imusician.pro/artist/VHoRWJRxOy/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-info skr zoom"
+            >
+              Imusician
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -568,8 +586,16 @@ function About() {
 // ---- FOOTER ----------------------------------------------------
 function Footer() {
   return (
-    <footer className="bg-li< py-4 mt-auto text-center">
+    <footer className=" py-4 mt-auto text-center ">
       <small>© {new Date().getFullYear()} Vibes Station</small>
+      <a
+              href="https://www.paypal.com/paypalme/GIA97"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-info skr m-2 px-3 text-black-50"
+            >
+              soutiens le concept
+            </a>
     </footer>
   );
 }

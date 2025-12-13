@@ -139,6 +139,48 @@
         "youtube": "https://www.youtube.com/watch?v=W2somu0Kzss",
         "spotify": "https://open.spotify.com/embed/album/2kvogsTbrneyzxccSnsirJ?utm_source=generator"
       }
-    }      
+    },      
+    {
+      "id": 11,
+      "genre": "Single Beat",
+      "category": ["hip-hop", "rnb", "lofi", "beat", "instrumental", "type beat","rap", "oldschool"],
+      "artist":[ "Opencesamy"],
+      "number_of_tracks": 3,
+      "title": "cline inspiration",
+      "thumbnail": "https://i.ibb.co/dCCT8pX/idgaf.png?text=idgaf",
+      "desc": "Trap type beat x Dark Beat x Chill.",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=vhkknVp9Jsw",
+        "spotify": "https://open.spotify.com/embed/album/6m7gs1eww31kCNt9qQwwF8"
+      }
+    },     
+    {
+      "id": 12,
+      "genre": "Single Beat",
+      "category": ["hip-hop", "rnb", "lofi", "beat", "instrumental", "type beat","rap", "oldschool"],
+      "artist":[ "Opencesamy"],
+      "number_of_tracks": 3,
+      "title": "Futur An Mwen",
+      "thumbnail": "https://i.ibb.co/dCCT8pX/idgaf.png?text=idgaf",
+      "desc": "Mini Freestyle janv 2013.",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=_ceTcpGRd1A",
+        "spotify": "https://open.spotify.com/embed/album/3QC0RGpndsCMzuFYQ5jnhE?utm_source=generator"
+      }
+    },     
+    {
+      "id": 13,
+      "genre": "Single song",
+      "category": ["hip-hop", "rnb", "lofi", "beat", "instrumental", "type beat","rap", "oldschool", "dancehall", "reggae", "zouk"],
+      "artist":[ "Desta"],
+      "number_of_tracks": 3,
+      "title": "Big Nation",
+      "thumbnail": "https://i.ibb.co/dCCT8pX/idgaf.png?text=idgaf",
+      "desc": "Ready fi make millions give thanks to Vibes Station.",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=VjsJhiglqK8",
+        "spotify": "https://open.spotify.com/embed/track/5NjBMwPGv3jEYTZDnD6U34"
+      }
+    }     
   ]
 }

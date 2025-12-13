@@ -15,6 +15,11 @@ body {
     Arial;
 }
 
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
 /* container spacing to avoid cards at the edge */
 .container {
   padding-left: 1rem;
@@ -28,7 +33,7 @@ body {
   );
 }
 
-p{font-family: "Skranji", cursive;}
+p{font-family: "Skranji", cursive; }
 
 /* small gutters for cards */
 .row.g-3 {
@@ -41,8 +46,24 @@ p{font-family: "Skranji", cursive;}
   
 }
 
-.card, .skred, .btn{
+.card, .skred, .btn, .card img, .card-title, .card-text{
   box-shadow: #000 0px 4px 8px 0px;
+}
+
+.card-text {
+  padding: 0.5rem;
+  color: #333;
+  font-weight: 500;
+  background: #f0f0f0;
+  margin: 1rem auto;
+}
+
+.art {
+  background: #b3b88038;
+}
+
+.vibe{
+  color: rebeccapurple;
 }
 
 .card-title {
@@ -60,7 +81,7 @@ p{font-family: "Skranji", cursive;}
 .card img {
   object-fit: cover;
   width: 100px;
-  height: 60px;
+  height: 70px;
   margin: auto;
   background: #000;
 }
@@ -79,6 +100,18 @@ p{font-family: "Skranji", cursive;}
     rgba(87, 199, 133, 0.12) 53%,
     rgba(237, 221, 83, 1) 100%
   );
+}
+
+.zoom {
+ 
+  
+  transition: transform .2s; /* Animation */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 @keyframes fadeInUp {
