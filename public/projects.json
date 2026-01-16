@@ -181,6 +181,20 @@
         "youtube": "https://www.youtube.com/watch?v=VjsJhiglqK8",
         "spotify": "https://open.spotify.com/embed/track/5NjBMwPGv3jEYTZDnD6U34"
       }
-    }     
+    },     
+    {
+      "id": 14,
+      "genre": "Single song",
+      "category": ["hip-hop", "rnb", "lofi", "beat", "instrumental", "type beat","rap", "oldschool", "dancehall", "reggae", "zouk"],
+      "artist":[ "Desta"],
+      "number_of_tracks": 3,
+      "title": "Big Nation",
+      "thumbnail": "https://i.ibb.co/dCCT8pX/idgaf.png?text=idgaf",
+      "desc": "Ready fi make millions give thanks to Vibes Station.",
+      "music": {
+        "youtube": "https://www.youtube.com/watch?v=VjsJhiglqK8",
+        "spotify": "https://open.spotify.com/embed/track/5NjBMwPGv3jEYTZDnD6U34"
+      }
+    }    
   ]
 }
