@@ -520,7 +520,7 @@ function About() {
             <h5>Discussion</h5>
             <p>
               Tu souhaites discuter musique et vibes, ou rajouter tes oeuvres à
-              une de mes playlist ? Rejoins-moi sur Instagram !
+              une playlist ? Viens sur Instagram !
             </p>
             <a href="https://www.youtube.com/channel/UCLa4Ej-SdzrSM3ux0ONHzPg?sub_confirmation=1"
               target="_blank"
