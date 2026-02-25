@@ -140,7 +140,7 @@ function FeaturedProject({ projects, navigate, isFavorite, toggleFavorite }) {
         className="img-fluid rounded mb-3 card"
       />
 
-      <h5 className="m-3"> "Unis par la musique, portés par ta vibe." </h5>
+      <h5 className="m-3"> "Unis par la musique, portés par la vibe" </h5>
       <iframe
         src={latestProject.music.spotify}
         width="100%"
@@ -182,26 +182,30 @@ function Home({ navigate, projects, isFavorite, toggleFavorite }) {
   return (
     <header className=" text-white py-1">
       <div className="container text-center card animate-fade-up">
-        <h1 className="display-5 my-3 text-warning">Vibes Station Project</h1>
-        <p className="lead mb-4">
+        <h1 className="display-5 my-3 text-warning">Vibes Station</h1>
+        {/* <p className="lead mb-4">
           Tu rêves d’un lieu où la musique devient langage universel ?
+        </p> */}
+        
+        <p className="lead mb-4">
+          Ici, l'art s’élève, s’affine et laisse son empreinte dans le grand
+          mouvement musical
         </p>
+
+        <p className="lead mb-4">
+          Découvre des créations inédites, partage notre univers sonore, en te
+          connectant à une communauté vibrante qui vit au rythme des mêmes
+          pulsations que toi
+        </p>
+        
+
         <p className="lead mb-4">
           Entre dans Vibes Station Concept, l’espace où chaque passionné trouve
-          sa résonance.
+          sa résonance
         </p>
+
         <p className="lead mb-4">
-          Découvre des créations inédites, partage ton univers sonore, et
-          connecte-toi à une communauté vibrante qui vit au rythme des mêmes
-          pulsations que toi.
-        </p>
-        <p className="lead mb-4">
-          Ici, ton art s’élève, s’affine et laisse son empreinte dans le grand
-          mouvement musical.
-        </p>
-        <p className="lead mb-4">
-          Rejoins-nous dès aujourd’hui sur <a className="text-warning zoom skr py-2 my-2 card " href="">Instagram <i class="fa-brands fa-instagram"></i></a> et fais vibrer le monde
-          avec ta signature unique.
+          Rejoins-nous dès aujourd’hui sur <a className="text-warning zoom skr py-2 my-2 card " href="">Instagram <i class="fa-brands fa-instagram"></i></a> et faisons vibrer le monde
         </p>
         <button
           className="btn btn-primary btn-lg mb-3 skr zoom"
@@ -209,7 +213,7 @@ function Home({ navigate, projects, isFavorite, toggleFavorite }) {
         >
           Entres dans la station
         </button>
-
+        
         {/* Nouvelle découverte */}
         <FeaturedProject
           projects={projects}
@@ -233,7 +237,7 @@ function Home({ navigate, projects, isFavorite, toggleFavorite }) {
 
         {/* VIDEO YOUTUBE EN BAS DE PAGE */}
         <div className="card border-primary p-3 mb-3 card animate-fade-up">
-          <h3 className="m-3">🎬 Nouvelle découverte</h3>
+          <h3 className="m-3">🎬 A découvrir </h3>
           <div className="ratio ratio-16x9 card animate-fade-up">
             <iframe
               src="https://www.youtube.com/embed/Bc84Z8Wzkho?si=wQJLe2Qt0wUvYNt4"
@@ -317,7 +321,7 @@ function FavoritesPage({
   projects,
   favorites,
   navigate,
-  isFavorite,
+  // isFavorite,
   toggleFavorite,
 }) {
   const favProjects = projects.filter((p) => favorites.includes(p.id));
