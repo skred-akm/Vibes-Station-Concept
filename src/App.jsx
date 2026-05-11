@@ -205,10 +205,10 @@ function Home({ navigate, projects, isFavorite, toggleFavorite }) {
         </p>
 
         <p className="lead mb-4">
-          Rejoins-nous dès aujourd’hui sur <a className="text-warning zoom skr py-2 my-2 card " href="">Instagram <i class="fa-brands fa-instagram"></i></a> et faisons vibrer le monde
+          Rejoins-nous dès aujourd’hui sur <a className="text-warning skr py-2 my-2 card " href="">Instagram <i class="fa-brands fa-instagram"></i></a> et faisons vibrer le monde
         </p>
         <button
-          className="btn btn-primary btn-lg mb-3 skr zoom"
+          className="btn btn-primary btn-lg mb-3 skr "
           onClick={() => navigate("/projects")}
         >
           Entres dans la station
@@ -523,8 +523,7 @@ function About() {
           <div className="card p-3 ">
             <h5>Discussion</h5>
             <p>
-              Tu souhaites discuter musique et vibes, ou rajouter tes oeuvres à
-              une playlist ? Viens sur Instagram !
+              Rejoignons-nous sur Instagram...
             </p>
             <a href="https://www.youtube.com/channel/UCLa4Ej-SdzrSM3ux0ONHzPg?sub_confirmation=1"
               target="_blank"
@@ -536,7 +535,7 @@ function About() {
 
         <div className="col-md-6 mb-3">
           <div className="card p-3 ">
-            <h5>Vibes</h5>
+            <h5>YouTube <i class="fas fa-youtube-square    "></i></h5>
             <p>
               Abonne-toi pour soutenir les sorties ! Ca fait toujours plaisir.
               Grandissons ensemble. L'aventure ne fait que commencer !
@@ -555,7 +554,7 @@ function About() {
         <div className="col-md-6 mb-3">
           <div className="card p-3 ">
             <h5>Artistes</h5>
-            <p>Beats gratuits et payants disponibles par ici !</p>
+            <p>You got the bars ? We got the beats !</p>
             <a
               href="https://www.beatstars.com/skredakaskr"
               target="_blank"
@@ -570,7 +569,7 @@ function About() {
         <div className="col-md-6 mb-3">
           <div className="card p-3 ">
             <h5>Streaming</h5>
-            <p>plateformes de distribution musicale</p>
+            <p>Disponibles sur toutes les plateformes de distribution musicale</p>
             <a
               href="https://music.imusician.pro/artist/VHoRWJRxOy/releases"
               target="_blank"
